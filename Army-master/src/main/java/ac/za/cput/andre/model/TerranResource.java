@@ -2,7 +2,8 @@ package ac.za.cput.andre.model;
 
 import org.springframework.hateoas.ResourceSupport;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by student on 2015/05/24.
@@ -10,6 +11,7 @@ import java.util.List;
 public class TerranResource extends ResourceSupport {
     private Long resID;
     private String armyName;
+    private ArrayList<HashMap<String,String>> armyUnits;
 
     private TerranResource()
     {
@@ -26,6 +28,11 @@ public class TerranResource extends ResourceSupport {
         return armyName;
     }
 
+    public ArrayList<HashMap<String,String>> getArmyUnits()
+    {
+        return armyUnits;
+    }
+
     public TerranResource(Builder builder)
     {
         this.resID = builder.resID;
@@ -36,6 +43,7 @@ public class TerranResource extends ResourceSupport {
     public static class Builder{
         private Long resID;
         private String armyName;
+        private ArrayList<HashMap<String,String>> armyUnits;
 
         public Builder(String name) {
             this.armyName = name;
@@ -52,6 +60,11 @@ public class TerranResource extends ResourceSupport {
             return this;
         }
 
+        public Builder armyUnits(ArrayList<HashMap<String,String>> value)
+        {
+            this.armyUnits = value;
+            return this;
+        }
         public TerranResource build(){
             return new TerranResource(this);
         }

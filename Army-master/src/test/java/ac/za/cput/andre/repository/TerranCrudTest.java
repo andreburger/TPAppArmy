@@ -13,6 +13,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by student on 2015/05/20.
@@ -26,24 +27,17 @@ public class TerranCrudTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void create() throws Exception {
-        ArrayList<Unit> army = new ArrayList<>();
+        ArrayList<HashMap<String,String>> army = new ArrayList<>();
         RaceSelector race = new RaceSelector();
 
         Race terran = race.getRace("Terran");
         Unit unit1 = terran.addUnit("Marine");
         Unit unit2 = terran.addUnit("Thor");
 
-        army.add(unit1);
-        army.add(unit2);
+        army = terran.getArmy();
 
+        terran.setArmyName("AndresArmy");
 
-        int popcap = 0;
-        for(int i = 0;i<army.size();i++)
-        {
-            popcap = popcap + army.get(i).popcap();
-        }
-        terran.setArmyName("Terran");
-        terran.setArmyPop(popcap);
         repository.save((Terran)terran);
         id=terran.getID();
         Assert.assertNotNull(terran);

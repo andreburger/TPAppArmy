@@ -2,12 +2,16 @@ package ac.za.cput.andre.model;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by student on 2015/05/24.
  */
-public class ProtossResource  extends ResourceSupport {
+public class ProtossResource extends ResourceSupport {
     private Long resID;
     private String armyName;
+    private ArrayList<HashMap<String,String>> armyUnits;
 
     private ProtossResource()
     {
@@ -24,16 +28,21 @@ public class ProtossResource  extends ResourceSupport {
         return armyName;
     }
 
+    public ArrayList<HashMap<String,String>> getArmyUnits()
+    {
+        return armyUnits;
+    }
+
     public ProtossResource(Builder builder)
     {
         this.resID = builder.resID;
         this.armyName = builder.armyName;
     }
 
-
     public static class Builder{
         private Long resID;
         private String armyName;
+        private ArrayList<HashMap<String,String>> armyUnits;
 
         public Builder(String name) {
             this.armyName = name;
@@ -47,6 +56,11 @@ public class ProtossResource  extends ResourceSupport {
 
         public Builder armyName(String value){
             this.armyName=value;
+            return this;
+        }
+        public Builder armyUnits(ArrayList<HashMap<String,String>> value)
+        {
+            this.armyUnits = value;
             return this;
         }
 

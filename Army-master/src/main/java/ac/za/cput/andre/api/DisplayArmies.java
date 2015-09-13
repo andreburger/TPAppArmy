@@ -23,7 +23,7 @@ import java.util.List;
  * Created by student on 2015/05/24.
  */
 @RestController
-@RequestMapping("api/home/**")
+@RequestMapping("api/services/**")
 public class DisplayArmies {
 
     @Autowired
@@ -49,6 +49,7 @@ public class DisplayArmies {
             TerranResource res = new TerranResource
                     .Builder(terran.getArmyName())
                     .resid(terran.getID())
+                    .armyUnits(terran.getArmy())
                     .build();
 
             Link link = new Link("http://localhost:8080/api/home/Terran/"+res.getResID().toString()).withRel("depts");
@@ -74,6 +75,7 @@ public class DisplayArmies {
             ZergResource res = new ZergResource
                     .Builder(zerg.getArmyName())
                     .resid(zerg.getID())
+                    .armyUnits(zerg.getArmy())
                     .build();
 
             Link link = new Link("http://localhost:8080/api/home/Zerg/"+res.getResID().toString()).withRel("depts");
@@ -99,6 +101,7 @@ public class DisplayArmies {
             ProtossResource res = new ProtossResource
                     .Builder(protoss.getArmyName())
                     .resid(protoss.getID())
+                    .armyUnits(protoss.getArmy())
                     .build();
 
             Link link = new Link("http://localhost:8080/api/home/Protoss/"+res.getResID().toString()).withRel("depts");

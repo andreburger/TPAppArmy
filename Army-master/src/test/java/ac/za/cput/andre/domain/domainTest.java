@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by student on 2015/04/26.
@@ -17,53 +19,49 @@ public class domainTest {
     @Test
     public void testCreateAmyTerran() throws Exception
     {
-        ArrayList<Unit> army = new ArrayList<>();
+        ArrayList<HashMap<String,String>> army = new ArrayList<>();
         RaceSelector race = new RaceSelector();
 
         Race terran = race.getRace("Terran");
         Unit unit1 = terran.addUnit("Marine");
         Unit unit2 = terran.addUnit("Thor");
 
-        army.add(unit1);
-        army.add(unit2);
+        army = terran.getArmy();
 
-
-        Assert.assertEquals(army.get(0).name(),"Marine");
-        Assert.assertEquals(army.get(1).name(),"Thor");
+        Assert.assertEquals(army.get(0).get("name"),"Marine");
+        Assert.assertEquals(army.get(1).get("name"),"Thor");
     }
 
     @Test
     public void testCreateAmyProtoss() throws Exception
     {
-        ArrayList<Unit> army = new ArrayList<>();
+        ArrayList<HashMap<String,String>> army = new ArrayList<>();
         RaceSelector race = new RaceSelector();
 
         Race protoss = race.getRace("Protoss");
         Unit unit1 = protoss.addUnit("Zealot");
         Unit unit2 = protoss.addUnit("Colossus");
 
-        army.add(unit1);
-        army.add(unit2);
+        army = protoss.getArmy();
 
-        Assert.assertEquals(army.get(0).name(),"Zealot");
-        Assert.assertEquals(army.get(1).name(),"Colossus");
+        Assert.assertEquals(army.get(0).get("name"),"Zealot");
+        Assert.assertEquals(army.get(1).get("name"),"Colossus");
     }
 
     @Test
     public void testCreateAmyZerg() throws Exception
     {
-        ArrayList<Unit> army = new ArrayList<>();
+        ArrayList<HashMap<String,String>> army = new ArrayList<>();
         RaceSelector race = new RaceSelector();
 
         Race zerg = race.getRace("Zerg");
         Unit unit1 = zerg.addUnit("Zergling");
         Unit unit2 = zerg.addUnit("Hydralisk");
 
-        army.add(unit1);
-        army.add(unit2);
+        army = zerg.getArmy();
 
-        Assert.assertEquals(army.get(0).name(),"Zergling");
-        Assert.assertEquals(army.get(1).name(),"Hydralisk");
+        Assert.assertEquals(army.get(0).get("name"),"Zergling");
+        Assert.assertEquals(army.get(1).get("name"),"Hydralisk");
     }
 
 }

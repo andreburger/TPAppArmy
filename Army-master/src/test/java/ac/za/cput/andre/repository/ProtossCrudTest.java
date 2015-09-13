@@ -13,6 +13,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by student on 2015/05/20.
@@ -26,24 +28,17 @@ public class ProtossCrudTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void create() throws Exception {
-        ArrayList<Unit> army = new ArrayList<>();
+        ArrayList<HashMap<String,String>> army = new ArrayList<>();
         RaceSelector race = new RaceSelector();
 
         Race protoss = race.getRace("Protoss");
         Unit unit1 = protoss.addUnit("Zealot");
         Unit unit2 = protoss.addUnit("Colossus");
 
-        army.add(unit1);
-        army.add(unit2);
+        army = protoss.getArmy();
 
+        protoss.setArmyName("RyansArmy");
 
-        int popcap = 0;
-        for(int i = 0;i<army.size();i++)
-        {
-            popcap = popcap + army.get(i).popcap();
-        }
-        protoss.setArmyName("Protoss");
-        protoss.setArmyPop(popcap);
         repository.save((Protoss)protoss);
         id=protoss.getID();
         Assert.assertNotNull(protoss);

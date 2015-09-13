@@ -13,6 +13,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by student on 2015/05/20.
@@ -26,24 +27,17 @@ public class ZergCrudTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void create() throws Exception {
-        ArrayList<Unit> army = new ArrayList<>();
+        ArrayList<HashMap<String,String>> army = new ArrayList<>();
         RaceSelector race = new RaceSelector();
 
         Race zerg = race.getRace("Zerg");
         Unit unit1 = zerg.addUnit("Zergling");
         Unit unit2 = zerg.addUnit("Hydralisk");
 
-        army.add(unit1);
-        army.add(unit2);
+        army = zerg.getArmy();
 
+        zerg.setArmyName("MitchelsArmy");
 
-        int popcap = 0;
-        for(int i = 0;i<army.size();i++)
-        {
-            popcap = popcap + army.get(i).popcap();
-        }
-        zerg.setArmyName("Zerg");
-        zerg.setArmyPop(popcap);
         repository.save((Zerg)zerg);
         id=zerg.getID();
         Assert.assertNotNull(zerg);
